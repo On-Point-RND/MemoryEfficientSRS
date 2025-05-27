@@ -1,8 +1,8 @@
-## ๐??จ SRC_PROJECT
+## 🎨 SRC_PROJECT
 This repository containing implementation Cut Cross Entropy (CCE) and Cut Cross Entropy with Negative Sampling (CCE-) for RecSys. Triton kernels are available in 
 `kernels/cut_cross_entropy`. Implementation of SASRec with CCE and CCE- can be found in `src/models/nn/sequential/sasrec/lightning.py`. Experiment pipeline is located in `src_benchmarks`.
 
-## ๐??? Getting Started
+## 🚀 Getting Started
 
 Installation via Docker is recommended by default:
 
@@ -11,22 +11,22 @@ docker build -t src_project .
 docker run -it --gpus '"device=0"' src_project
 ```
 
-### ๐??ณ Docker Setup for Project
+### 🐳 Docker Setup for Project
 This repository includes a Dockerfile for building a development environment with:
 - PyTorch 2.5.1 + CUDA 12.4 + cuDNN 9
 - Python 3.10 (from the PyTorch base image)
 - Java 11 (OpenJDK)
 
-### ๐??ฆ Installed System Packages (apt)
+### 📦 Installed System Packages (apt)
 The following system dependencies are installed in the image:
-- apt-utils โ?? base utility for apt
-- build-essential โ?? compiler and toolchain (required by some Python packages)
-- libgomp1 โ?? OpenMP support library (used by numpy and other libs)
-- pandoc โ?? required for Lightning logs or documentation exports
-- git โ?? for cloning repos or versioning
-- openjdk-11 โ?? manually copied from the slim OpenJDK image
+- apt-utils – base utility for apt
+- build-essential – compiler and toolchain (required by some Python packages)
+- libgomp1 – OpenMP support library (used by numpy and other libs)
+- pandoc – required for Lightning logs or documentation exports
+- git – for cloning repos or versioning
+- openjdk-11 – manually copied from the slim OpenJDK image
 
-### ๐?งช Python Packages (pip)
+### 🧪 Python Packages (pip)
 Installed Python packages with pinned versions:
 ```plaintext
   numpy==1.24.4
@@ -43,13 +43,13 @@ Installed Python packages with pinned versions:
   Ninja==1.11.1.1
   tensorboard==2.19.0
 ```
-## โ??๏ธ? Running Experiments with SASRec
-### โ?ก๏ธ? Quickstart
+## ⚙️ Running Experiments with SASRec
+### ⚡️ Quickstart
 To run the experiments for training SASRec, use the following command from the project directory:
 ```bash
 python main.py
 ```
-### ๐??? Configuration
+### 📁 Configuration
 All experiment parameters are defined using .yaml configuration files located in the `src_benchmarks/configs` directory.
 The main configuration file is `src_benchmarks/configs/config.yaml`, where you specify the dataset and model:
 
@@ -69,7 +69,7 @@ defaults:
 
 Each dataset have a corresponding config file, e.g., `src_benchmarks/configs/dataset/movielens_20m.yaml`.
 
-### โ??๏ธ? Custom Loss Configuration
+### ⚙️ Custom Loss Configuration
 To use CCE- loss, include the following parameters in the model config (sasrec_<dataset_name>.yaml):
 ```yaml
 - loss_type: CCE
@@ -77,7 +77,7 @@ To use CCE- loss, include the following parameters in the model config (sasrec_<
 ```
 If `loss_sample_count: null`, the training will use the standard CCE method.
 
-### ๐??? Reproducing CE- Grid Search
+### 🔍 Reproducing CE- Grid Search
 We provide a dedicated trainer for grid search, located at:
 ```bash
 src_benchmarks/grid_params_search_runner.py
@@ -95,9 +95,10 @@ defaults:
   - mode: hyperparameter_experiment
 ```
 
-> ๐??ก**P.S.** To adjust other training parameters, edit them in their respective config files (e.g., `src_benchmarks/configs/model/sasrec_movielens_20m.yaml`), not in `hyperparameter_experiment.yaml`.
+> 💡**P.S.** To adjust other training parameters, edit them in their respective config files (e.g., `src_benchmarks/configs/model/sasrec_movielens_20m.yaml`), not in `hyperparameter_experiment.yaml`.
 
-## ๐??? Results
+## 📊 Results
+
 In this section, we present the results of training transformer models **SASRec** and **BERT4Rec** on 6 popular datasets, such as 
 - Megamarket
 - Zvuk
