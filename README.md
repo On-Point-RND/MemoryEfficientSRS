@@ -121,24 +121,24 @@ training hyperparameters such as batch size (BS), maximum sequence length (SL), 
 performance metrics (NDCG@10, Coverage@10, and Surprisal@10); memory consumption during training (max_allocated_mem); and the average time spent per epoch (Epoch, s).
 
 
-Max_allocated_mem refers to the maximum memory consumed for model training, which is calculated using the function `torch.cuda.max_memory_allocated()`.
+Max memory refers to the maximum memory consumed for model training, which is calculated using the function `torch.cuda.max_memory_allocated()`.
 
 ### Results of experiments on test set for SASRec model
 
 The two tables below present the results for CE and CE-.
 
-| Dataset          | Loss type | BS   | SL  | NN   | NDCG@10   | Coverage@10 | Surprisal@10 | max_allocated_mem | Epoch, s|
-|------------------|-----------|------|-----|------|-----------|-------------|--------------|-------------------|---------|
-| Megamarket       | CE     | 16    | 128   |       | 0.005200  | 0.042400  | 0.443800  | 64.7   | 4054.3 |
-| Zvuk             | CE     | 64    | 96    |       | 0.079737  | 0.060899  | 0.337537  | 65.2   | 1766.1 |
-| 30Music          | CE     | 32    | 128   |       | 0.089100  | 0.049700  | 0.504200  | 69.8   | 252.4  |
-| Gowalla          | CE     | 256   | 64    |       | 0.022498  | 0.202788  | 0.632923  | 47.7   | 57.5   |
-| Beauty           | CE     | 1024  | 32    |       | 0.011419  | 0.085892  | 0.506053  | 51.7   | 132    |
-| Movielens-20m    | CE     | 256   | 512   |       | 0.050973  | 0.241322  | 0.079803  | 19.3   | 49.9   |
+| Dataset          | Loss type | BS   | SL  | NDCG@10   | Coverage@10 | Surprisal@10 | Max memory, GB | Epoch, s|
+|------------------|-----------|------|-----|-----------|-------------|--------------|-------------------|---------|
+| Megamarket       | CE     | 16    | 128   | 0.005200  | 0.042400  | 0.443800  | 64.7   | 4054.3 |
+| Zvuk             | CE     | 64    | 96    | 0.079737  | 0.060899  | 0.337537  | 65.2   | 1766.1 |
+| 30Music          | CE     | 32    | 128   | 0.089100  | 0.049700  | 0.504200  | 69.8   | 252.4  |
+| Gowalla          | CE     | 256   | 64    | 0.022498  | 0.202788  | 0.632923  | 47.7   | 57.5   |
+| Beauty           | CE     | 1024  | 32    | 0.011419  | 0.085892  | 0.506053  | 51.7   | 132    |
+| Movielens-20m    | CE     | 256   | 512   | 0.050973  | 0.241322  | 0.079803  | 19.3   | 49.9   |
 
 <hr>
 
-| Dataset          | Loss type | BS   | SL  | NN   | NDCG@10   | Coverage@10 | Surprisal@10 | max_allocated_mem | Epoch, s|
+| Dataset          | Loss type | BS   | SL  | NN   | NDCG@10   | Coverage@10 | Surprisal@10 | Max memory, GB | Epoch, s|
 |------------------|-----------|------|-----|------|-----------|-------------|--------------|-------------------|---------|
 | Megamarket       | CE-    | 1024  | 32    | 255   | 0.011700  | 0.109900  | 0.456000  | 71.0   | 60.0   |
 | Zvuk             | CE-    | 1024  | 32    | 256   | 0.067477  | 0.129917  | 0.334126  | 56.0   | 106.0  |
@@ -153,18 +153,18 @@ Additionally, for datasets with large item catalogs, the training process is con
 The two tables below present the results for CCE and CCE-.
 <hr>
 
-| Dataset          | Loss type | BS   | SL  | NN   | NDCG@10   | Coverage@10 | Surprisal@10 | max_allocated_mem | Epoch, s|
-|------------------|-----------|------|-----|------|-----------|-------------|--------------|-------------------|---------|
-| Megamarket       | CCE    | 5120  | 320   |       | 0.0181    | 0.1705    | 0.5466    | 40.0   | 2248.0   |
-| Zvuk             | CCE    | 1024  | 128   |       | 0.0940    | 0.1401    | 0.3547    | 9.5    | 550.0    |
-| 30Music          | CCE    | 256   | 720   |       | 0.1393    | 0.1203    | 0.5783    | 9.4    | 389.0    |
-| Gowalla          | CCE    | 1024  | 320   |       | 0.0241    | 0.2021    | 0.6447    | 12.0   | 132.0    |
-| Beauty           | CCE    | 1024  | 32    |       | 0.0104    | 0.1155    | 0.5172    | 1.5    | 80.3     |
-| Movielens-20m    | CCE    | 256   | 512   |       | 0.0511    | 0.2102    | 0.0793    | 3.4    | 43.0     |
+| Dataset          | Loss type | BS   | SL  | NDCG@10   | Coverage@10 | Surprisal@10 | Max memory, GB | Epoch, s|
+|------------------|-----------|------|-----|-----------|-------------|--------------|-------------------|---------|
+| Megamarket       | CCE    | 5120  | 320   | 0.0181    | 0.1705    | 0.5466    | 40.0   | 2248.0   |
+| Zvuk             | CCE    | 1024  | 128   | 0.0940    | 0.1401    | 0.3547    | 9.5    | 550.0    |
+| 30Music          | CCE    | 256   | 720   | 0.1393    | 0.1203    | 0.5783    | 9.4    | 389.0    |
+| Gowalla          | CCE    | 1024  | 320   | 0.0241    | 0.2021    | 0.6447    | 12.0   | 132.0    |
+| Beauty           | CCE    | 1024  | 32    | 0.0104    | 0.1155    | 0.5172    | 1.5    | 80.3     |
+| Movielens-20m    | CCE    | 256   | 512   | 0.0511    | 0.2102    | 0.0793    | 3.4    | 43.0     |
 
 <hr>
 
-| Dataset          | Loss type | BS   | SL  | NN   | NDCG@10   | Coverage@10 | Surprisal@10 | max_allocated_mem | Epoch, s|
+| Dataset          | Loss type | BS   | SL  | NN   | NDCG@10   | Coverage@10 | Surprisal@10 | Max memory, GB | Epoch, s|
 |------------------|-----------|------|-----|------|-----------|-------------|--------------|-------------------|---------|
 | Megamarket       | CCE-   | 5120  | 320   | 1023  | 0.0168    | 0.1158    | 0.4941    | 80.0     | 262.0    |
 | Zvuk             | CCE-   | 1024  | 128   | 2047  | 0.0852    | 0.1490    | 0.3486    | 14.0     | 308.0    |
@@ -200,7 +200,7 @@ The three tables below present the results for BCE, BCE+, gBCE.
 
 <hr>
 
-| Dataset          | Loss type | BS   | SL  | NN   | NDCG@10   | Coverage@10 | Surprisal@10 | max_allocated_mem | Epoch, s|
+| Dataset          | Loss type | BS   | SL  | NN   | NDCG@10   | Coverage@10 | Surprisal@10 | Max memory, GB | Epoch, s|
 |------------------|-----------|------|-----|------|-----------|-------------|--------------|-------------------|---------|
 | Megamarket       | BCE+   | 1024  | 32    | 255   | 0.012686  | 0.101091  | 0.480729  | 47.0   | 53.6   |
 | Zvuk             | BCE+   | 1024  | 32    | 256   | 0.068039  | 0.118970  | 0.348780  | 24.4   | 48     |
@@ -240,7 +240,7 @@ It should be noted that in the present study, we focus on optimizing the full CE
 ### Results for popularity sampling strategy
 Similar to CE-, the CCE- method can be applied with various sampling strategies. Below are the results of SASRec training using CCE- with the popularity sampling strategy. 
 
-| Dataset       | Loss type | BS | SL   | NN  |	NDCG@10| Coverage@10| Surprisal@10 |	max_allocated_mem | Epoch, s|
+| Dataset       | Loss type | BS | SL   | NN  |	NDCG@10| Coverage@10| Surprisal@10 |	Max memory, GB | Epoch, s|
 |---------------|-----------|----|------|-----|--------|------------|--------------|--------------|--------|
 |Gowalla	      |   CE-     |512 | 256  | 511	|0.018872| 0.476344   | 0.749862     |	42.6       | 105.5 |
 |Beauty         |   CE-     |1024| 32   | 511	|0.006125| 0.354296   | 0.700006     |	11.6       | 95.6  |
@@ -248,7 +248,7 @@ Similar to CE-, the CCE- method can be applied with various sampling strategies.
 
 <hr>
 
-| Dataset       | Loss type | BS | SL   | NN  |	NDCG@10| Coverage@10| Surprisal@10 |	max_allocated_mem | Epoch, s|
+| Dataset       | Loss type | BS | SL   | NN  |	NDCG@10| Coverage@10| Surprisal@10 |	Max memory, GB | Epoch, s|
 |---------------|-----------|----|------|-----|--------|------------|--------------|--------------|--------|
 |Gowalla	      |   CCE-    |512 | 256  | 511	|0.018959| 0.402872   | 0.747944     |	34.0       | 82.7  |
 |Beauty         |   CCE-    |1024| 32   | 511	|0.006619| 0.518114   | 0.709849     |	5.7        | 82.9  |
@@ -256,7 +256,7 @@ Similar to CE-, the CCE- method can be applied with various sampling strategies.
 
 <hr>
 
-| Dataset       | Loss type | BS | SL   | NN  |	NDCG@10| Coverage@10| Surprisal@10 |	max_allocated_mem | Epoch, s|
+| Dataset       | Loss type | BS | SL   | NN  |	NDCG@10| Coverage@10| Surprisal@10 |	Max memory, GB | Epoch, s|
 |---------------|-----------|----|------|-----|--------|------------|--------------|--------------|--------|
 |Gowalla	      |   CCE-    |1024| 320  | 511	|0.020018| 0.454025   | 0.752142     |	67.9       | 86.9  |
 |Beauty         |   CCE-    |1024| 32   | 511	|0.006619| 0.518114   | 0.709849     |	5.7        | 82.9  |
@@ -274,18 +274,18 @@ This is attributed to the implementation characteristics of `torch.multinomial`,
 
 The CCE and CCE- also can be adapted for training BERT4Rec. 
 
-| Dataset          | Loss type | BS   | SL  | NN   | NDCG@10   | Coverage@10 | Surprisal@10 | max_allocated_mem | Epoch, s|
-|------------------|-----------|------|-----|------|-----------|-------------|--------------|-------------------|---------|
-| Megamarket       | CE        | 32   | 128 |      | 0.003486  | 0.004417    | 0.360299     | 62.7              | 3684.4  |
-| Zvuk             | CE        | 64   | 96  |      | 0.050721  | 0.022123    | 0.264445     | 38.1              | 1514.6  |
-| 30Music          | CE        | 32   | 128 |      | 0.023739  | 0.008724    | 0.402552     | 15.4              | 183.2   |
-| Gowalla          | CE        | 256  | 64  |      | 0.009060  | 0.095337    | 0.632059     | 12.9              | 30.0    |
-| Beauty           | CE        | 1024 | 32  |      | 0.008316  | 0.031619    | 0.487503     | 12.6              | 62.8    |
-| Movielens-20m    | CE        | 256  | 512 |      | 0.048726  | 0.188964    | 0.077132     | 7.0               | 32.9    |
+| Dataset          | Loss type | BS   | SL  | NDCG@10   | Coverage@10 | Surprisal@10 | Max memory, GB | Epoch, s|
+|------------------|-----------|------|-----|-----------|-------------|--------------|-------------------|---------|
+| Megamarket       | CE        | 32   | 128 | 0.003486  | 0.004417    | 0.360299     | 62.7              | 3684.4  |
+| Zvuk             | CE        | 64   | 96  | 0.050721  | 0.022123    | 0.264445     | 38.1              | 1514.6  |
+| 30Music          | CE        | 32   | 128 | 0.023739  | 0.008724    | 0.402552     | 15.4              | 183.2   |
+| Gowalla          | CE        | 256  | 64  | 0.009060  | 0.095337    | 0.632059     | 12.9              | 30.0    |
+| Beauty           | CE        | 1024 | 32  | 0.008316  | 0.031619    | 0.487503     | 12.6              | 62.8    |
+| Movielens-20m    | CE        | 256  | 512 | 0.048726  | 0.188964    | 0.077132     | 7.0               | 32.9    |
 
 <hr>
 
-| Dataset          | Loss type | BS   | SL  | NN   | NDCG@10   | Coverage@10 | Surprisal@10 | max_allocated_mem | Epoch, s|
+| Dataset          | Loss type | BS   | SL  | NN   | NDCG@10   | Coverage@10 | Surprisal@10 | Max memory, GB | Epoch, s|
 |------------------|-----------|------|-----|------|-----------|-------------|--------------|-------------------|---------|
 | Megamarket       | CE-       | 1024 | 32  | 255  | 0.003966  | 0.041467    | 0.427789     | 35.4              | 67.1    |
 | Zvuk             | CE-       | 1024 | 32  | 256  | 0.000117  | 0.000584    | 0.414634     | 22.8              | 86.4    |
@@ -296,18 +296,18 @@ The CCE and CCE- also can be adapted for training BERT4Rec.
 
 <hr>
 
-| Dataset          | Loss type | BS   | SL  | NN   | NDCG@10   | Coverage@10 | Surprisal@10 | max_allocated_mem | Epoch, s|
-|------------------|-----------|------|-----|------|-----------|-------------|--------------|-------------------|---------|
-| Megamarket       | CCE       | 2048 | 320 |      | 0.012547  | 0.140966    | 0.560321     | 62.8              | 306.3   |
-| Zvuk             | CCE       | 1024 | 128 |      | 0.079333  | 0.104216    | 0.357776     | 10.2              | 101.6   |
-| 30Music          | CCE       | 256  | 720 |      | 0.088472  | 0.079855    | 0.572631     | 11.6              | 55.9    |
-| Gowalla          | CCE       | 1024 | 320 |      | 0.009189  | 0.171003    | 0.654761     | 10.7              | 13      |
-| Beauty           | CCE       |1024  | 32  |      | 0.007998  | 0.050229    | 0.509292     | 2.1               | 21      |
-| Movielens-20m    | CCE       | 256  | 512 |      | 0.048857  | 0.169004    | 0.074420     | 3.5               | 24.3    |
+| Dataset          | Loss type | BS   | SL  | NDCG@10   | Coverage@10 | Surprisal@10 | Max memory, GB | Epoch, s|
+|------------------|-----------|------|-----|-----------|-------------|--------------|-------------------|---------|
+| Megamarket       | CCE       | 2048 | 320 | 0.012547  | 0.140966    | 0.560321     | 62.8              | 306.3   |
+| Zvuk             | CCE       | 1024 | 128 | 0.079333  | 0.104216    | 0.357776     | 10.2              | 101.6   |
+| 30Music          | CCE       | 256  | 720 | 0.088472  | 0.079855    | 0.572631     | 11.6              | 55.9    |
+| Gowalla          | CCE       | 1024 | 320 | 0.009189  | 0.171003    | 0.654761     | 10.7              | 13      |
+| Beauty           | CCE       |1024  | 32  | 0.007998  | 0.050229    | 0.509292     | 2.1               | 21      |
+| Movielens-20m    | CCE       | 256  | 512 | 0.048857  | 0.169004    | 0.074420     | 3.5               | 24.3    |
 
 <hr>
 
-| Dataset          | Loss type | BS   | SL  | NN   | NDCG@10   | Coverage@10 | Surprisal@10 | max_allocated_mem | Epoch, s|
+| Dataset          | Loss type | BS   | SL  | NN   | NDCG@10   | Coverage@10 | Surprisal@10 | Max memory, GB | Epoch, s|
 |------------------|-----------|------|-----|------|-----------|-------------|--------------|-------------------|---------|
 | Megamarket       | CCE-      | 2048 | 320 | 4095 | 0.013025  | 0.135167    | 0.539192     | 53.8              | 206.1   |
 | Zvuk             | CCE-      | 1024 | 128 | 2047 | 0.063854  | 0.101359    | 0.343539     | 10.6              | 65.8    |
@@ -318,7 +318,7 @@ The CCE and CCE- also can be adapted for training BERT4Rec.
 
 <hr>
 
-| Dataset          | Loss type | BS   | SL  | NN   | NDCG@10   | Coverage@10 | Surprisal@10 | max_allocated_mem | Epoch, s|
+| Dataset          | Loss type | BS   | SL  | NN   | NDCG@10   | Coverage@10 | Surprisal@10 | Max memory, GB | Epoch, s|
 |------------------|-----------|------|-----|------|-----------|-------------|--------------|-------------------|---------|
 | Megamarket       | BCE+      | 1024 | 32  | 255  | 0.006520  | 0.028739    | 0.393695     | 35.4              | 67.1    |
 | Zvuk             | BCE+      | 1024 | 32  | 256  | 0.000126  | 0.001749    | 0.410944     | 22.8              | 86.2    |
