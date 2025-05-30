@@ -231,7 +231,7 @@ The table below present the results for SCE.
 | Movielens 20m  | SCE       | 256  | 512 | 0.0396    | 0.1812      | 0.0856       | 6.0               | 69.5     |
 
 
-Training the model with the SCE loss function yields performance metrics comparable to those of CCE and CCE-, while being more memory-efficient and requiring less time per epoch.
+Training the model with the SCE loss function yields performance metrics comparable to those of CCE and CCE-.
 However, since SCE still incorporates the CE loss, it primarily serves as a strategy for item sampling. Its implementation can be further optimized using Triton kernels, enabling more efficient GPU utilization and potentially reducing training time.
 
 It should be noted that in the present study, we focus on optimizing the full CE loss function as well as the CE loss with negative sampling.
