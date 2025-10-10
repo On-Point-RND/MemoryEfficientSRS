@@ -1,4 +1,4 @@
-### [Faster and Memory-Efficient Training of Sequential Recommendation Models for Large Catalogs](https://arxiv.org/abs/2509.09682)
+# PAPER: [Faster and Memory-Efficient Training of Sequential Recommendation Models for Large Catalogs](https://arxiv.org/abs/2509.09682)
 
 
 ## 🎨 SRC_PROJECT
