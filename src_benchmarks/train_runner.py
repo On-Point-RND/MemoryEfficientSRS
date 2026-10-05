@@ -28,7 +28,7 @@ from src.metrics import (
 )
 from src.data.nn import SequenceTokenizer
 from src.metrics.torch_metrics_builder import metrics_to_df
-from src.models.nn.sequential import SasRec
+from src.models.nn.sequential import SasRec, Bert4Rec
 from src.models.nn.optimizer_utils import FatOptimizerFactory
 from src.models.nn.sequential.callbacks import (
     ValidationMetricsCallback,
@@ -39,6 +39,11 @@ from src.models.nn.sequential.sasrec import (
     SasRecTrainingDataset,
     SasRecValidationDataset,
     SasRecPredictionDataset,
+)
+from src.models.nn.sequential.bert4rec import (
+    Bert4RecTrainingDataset,
+    Bert4RecValidationDataset,
+    Bert4RecPredictionDataset,
 )
 
 
@@ -68,6 +73,10 @@ class TrainRunner(BaseRunner):
         for path in required_paths:
             Path(path).mkdir(parents=True, exist_ok=True)
 
+    def _get_devices(self):
+        n_gpus = len(str(self.config["env"]["CUDA_VISIBLE_DEVICES"]).split(","))
+        return list(range(n_gpus))
+
     def _initialize_model(self, trial=None):
         """Initialize the model based on configuration or Optuna trial parameters."""
         model_config = {
@@ -89,6 +98,8 @@ class TrainRunner(BaseRunner):
                 optimizer_factory=optimizer_factory,
                 popularity_distribution=self.popularity_distribution,
             )
+        elif "bert4rec" in self.model_name.lower():
+            return Bert4Rec(**model_config, optimizer_factory=optimizer_factory)
         else:
             raise ValueError(f"Unsupported model type: {self.model_name}")
 
@@ -107,6 +118,11 @@ class TrainRunner(BaseRunner):
                 SasRecTrainingDataset,
                 SasRecValidationDataset,
                 SasRecPredictionDataset,
+            ),
+            "bert4rec": (
+                Bert4RecTrainingDataset,
+                Bert4RecValidationDataset,
+                Bert4RecPredictionDataset,
             ),
         }
 
@@ -264,7 +280,7 @@ class TrainRunner(BaseRunner):
         logging.info(f"Best model saved at: {save_path}")
 
     def _save_allocated_memory(self):
-        devices = [int(self.config["env"]["CUDA_VISIBLE_DEVICES"])]
+        devices = self._get_devices()
         torch.cuda.synchronize()
         allocated = torch.cuda.memory_allocated(device=devices[0]) / 1024**3  # GB
         max_allocated = torch.cuda.max_memory_allocated(device=devices[0]) / 1024**3  # GB
@@ -322,7 +338,7 @@ class TrainRunner(BaseRunner):
             dirpath=self.csv_logger.log_dir, filename="simple_profiler"
         )
 
-        devices = [int(self.config["env"]["CUDA_VISIBLE_DEVICES"])]
+        devices = self._get_devices()
         trainer = L.Trainer(
             max_epochs=self.model_cfg["training_params"]["max_epochs"],
             callbacks=[
@@ -363,6 +379,10 @@ class TrainRunner(BaseRunner):
 
         if self.model_name.lower() == "sasrec":
             best_model = SasRec.load_from_checkpoint(
+                checkpoint_callback.best_model_path
+            )
+        elif self.model_name.lower() == "bert4rec":
+            best_model = Bert4Rec.load_from_checkpoint(
                 checkpoint_callback.best_model_path
             )
         self.save_model(trainer, best_model)

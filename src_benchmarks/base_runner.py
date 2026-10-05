@@ -226,6 +226,14 @@ class BaseRunner(ABC):
         os.environ["CUDA_VISIBLE_DEVICES"] = self.config["env"]["CUDA_VISIBLE_DEVICES"]
         os.environ["KAGGLE_USERNAME"] = "recsysaccelerate"
         os.environ["KAGGLE_KEY"] = "6363e91b656fea576c39e4f55dcc1d00"
+        # fsspec atomic checkpoint save uses tempfile (defaults to tiny /tmp)
+        tmpdir = os.path.join(self.config["paths"]["main_csv_res_dir"], "tmp")
+        os.makedirs(tmpdir, exist_ok=True)
+        os.environ["TMPDIR"] = tmpdir
+        os.environ["TEMP"] = tmpdir
+        os.environ["TMP"] = tmpdir
+        import tempfile
+        tempfile.tempdir = tmpdir
 
     @abstractmethod
     def run(self):

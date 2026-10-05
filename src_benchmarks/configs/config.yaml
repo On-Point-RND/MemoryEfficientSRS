@@ -1,6 +1,6 @@
 defaults:
-  - dataset: movielens_20m
-  - model: sasrec_movielens_20m
+  - dataset: beauty
+  - model: bert4rec_beauty_ce
   - mode: train
   - acceleration: null
 

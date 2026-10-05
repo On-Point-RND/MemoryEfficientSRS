@@ -1,0 +1,23 @@
+model:
+  name: bert4rec
+  save_name: bert4rec_cce
+
+  params:
+    model_params:
+      block_count: 2
+      head_count: 2
+      max_seq_len: 320
+      hidden_size: 320
+      dropout_rate: 0.1
+      loss_type: CCE # CE, BCE, SCE, CE_restricted, CCE
+      loss_sample_count: null
+      negative_sampling_strategy: global_uniform
+    training_params:
+      embedding_dim: 320 # must equal hidden_size
+      learning_rate: 0.001
+      weight_decay: 0.00001
+      batch_size: 2048
+      num_workers: 4
+      patience: 4
+      max_epochs: 20
+      precision: 16-mixed

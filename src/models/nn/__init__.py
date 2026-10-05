@@ -1,1 +1,1 @@
-from .sequential import SasRec
+from .sequential import SasRec, Bert4Rec

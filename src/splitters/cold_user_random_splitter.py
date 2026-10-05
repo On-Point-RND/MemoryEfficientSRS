@@ -64,7 +64,7 @@ class ColdUserRandomSplitter(Splitter):
         train_users["is_test"] = False
 
         interactions = interactions.merge(train_users, on=self.query_column, how="left")
-        interactions["is_test"].fillna(True, inplace=True)
+        interactions["is_test"] = interactions["is_test"].fillna(True).astype(bool)
 
         train = interactions[~interactions["is_test"]].drop(columns=["is_test"])
         test = interactions[interactions["is_test"]].drop(columns=["is_test"])
